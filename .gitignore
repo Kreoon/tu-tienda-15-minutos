@@ -1,0 +1,10 @@
+# datos de cada tienda y corrida (no se publican)
+tienda.json
+.tienda/
+corridas/*
+!corridas/.gitkeep
+.build-tema/
+.build-base/
+__pycache__/
+*.pyc
+.claude/settings.local.json

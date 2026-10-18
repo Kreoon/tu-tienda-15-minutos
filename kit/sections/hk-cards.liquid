@@ -1,0 +1,36 @@
+{% render 'hk-head' %}
+<section class="hk hk-sec {% if section.settings.alt %}hk-sec--alt{% endif %}">
+  <div class="hk-wrap">
+    <div class="hk-center">
+      {%- if section.settings.badge != blank -%}<p><span class="hk-badge" style="font-size:17px;padding:8px 20px">{{ section.settings.badge }}</span></p>{%- endif -%}
+      <h2>{{ section.settings.heading }}</h2>
+      {%- if section.settings.text != blank -%}<p class="hk-sub">{{ section.settings.text }}</p>{%- endif -%}
+    </div>
+    <div class="hk-grid hk-grid--{{ section.settings.columns }}{% if section.settings.columns == '4' %} hk-grid--4m2{% endif %}">
+      {%- for b in section.blocks -%}
+        <article class="hk-card hk-tcard{% if section.settings.style == 'square' %} hk-tcard--center{% endif %}" {{ b.shopify_attributes }}>
+          <div class="hk-tcard__img{% if section.settings.style == 'wide' %} hk-tcard__img--wide{% endif %}">{% render 'hk-img', image: b.settings.image, asset: b.settings.image_asset, label: b.settings.ph, sizes: '(min-width: 750px) 33vw, 100vw' %}</div>
+          <div class="hk-tcard__body">
+            {%- if b.settings.kicker != blank -%}<p><span class="hk-badge">{{ b.settings.kicker }}</span></p>{%- endif -%}
+            <h3>{{ b.settings.title }}</h3><p>{{ b.settings.text }}</p>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.button != blank -%}<p class="hk-center" style="margin-top:32px"><a class="hk-btn" href="#comprar" style="min-width:min(100%,320px)">{{ section.settings.button }}</a></p>{%- endif -%}
+  </div>
+</section>
+{% schema %}
+{ "name": "HK · Tarjetas con foto", "settings": [
+  { "type": "text", "id": "badge", "label": "Badge superior" },
+  { "type": "text", "id": "heading", "label": "Título (usa <em> para resaltar)" }, { "type": "textarea", "id": "text", "label": "Subtítulo" },
+  { "type": "select", "id": "columns", "label": "Columnas", "default": "4", "options": [{ "value": "2", "label": "2" }, { "value": "3", "label": "3" }, { "value": "4", "label": "4" }] },
+  { "type": "select", "id": "style", "label": "Estilo de imagen", "default": "square", "options": [{ "value": "square", "label": "Cuadrada centrada" }, { "value": "wide", "label": "Ancha" }] },
+  { "type": "checkbox", "id": "alt", "label": "Fondo alterno", "default": true },
+  { "type": "text", "id": "button", "label": "Botón (vacío = sin botón)" } ],
+  "blocks": [{ "type": "card", "name": "Tarjeta", "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagen" }, { "type": "text", "id": "image_asset", "label": "Imagen · archivo del tema" }, { "type": "text", "id": "ph", "label": "Etiqueta placeholder" },
+    { "type": "text", "id": "kicker", "label": "Etiqueta (ej. Razón 1)" },
+    { "type": "text", "id": "title", "label": "Título" }, { "type": "textarea", "id": "text", "label": "Texto" } ] }],
+  "presets": [{ "name": "HK · Tarjetas con foto" }] }
+{% endschema %}

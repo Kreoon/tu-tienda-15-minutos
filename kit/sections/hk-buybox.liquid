@@ -1,0 +1,236 @@
+{% render 'hk-head' %}
+{%- liquid
+  assign current = product.selected_or_first_available_variant
+  assign offers = section.blocks | where: 'type', 'offer'
+  assign accs = section.blocks | where: 'type', 'accordion'
+  assign color_opt = product.options_with_values | where: 'name', section.settings.color_option | first
+  assign gifts = section.blocks | where: 'type', 'gift'
+  assign avatars = section.blocks | where: 'type', 'avatar'
+  assign compact = false
+  if section.settings.layout == 'compact'
+    assign compact = true
+  endif
+-%}
+<section class="hk hk-bb{% if compact %} hk-bb--compact hk-sec--alt{% endif %}" {% unless compact %}id="comprar"{% endunless %}>
+  {%- if compact -%}
+    <div class="hk-wrap hk-center" style="max-width:720px">
+      <div class="hk-bb__hero-img">{% render 'hk-img', image: section.settings.header_image, asset: section.settings.header_image_asset, label: 'G5 · Producto en sus colores' %}</div>
+      <h2>{{ section.settings.heading }}</h2>
+      <p class="hk-sub">{{ section.settings.subheading }}</p>
+    </div>
+  {%- endif -%}
+  <div class="hk-wrap hk-bb__grid">
+    {%- unless compact -%}
+    <div class="hk-bb__media">
+      <div class="hk-gal__main" data-hk-main>
+        {%- if product.media.size > 0 -%}
+          {{ product.featured_media | image_url: width: 1600 | image_tag: class: 'hk-img', loading: 'eager', fetchpriority: 'high', sizes: '(min-width: 990px) 50vw, 100vw', widths: '600, 900, 1200, 1600' }}
+        {%- else -%}
+          {% render 'hk-img', image: blank, label: 'G1 · Producto' %}
+        {%- endif -%}
+      </div>
+      <div class="hk-gal__thumbs">
+        {%- if product.media.size > 0 -%}
+          {%- for m in product.media limit: 5 -%}
+            <button type="button" data-src="{{ m | image_url: width: 1600 }}" {% if forloop.first %}aria-current="true"{% endif %} aria-label="Ver imagen {{ forloop.index }}">{{ m | image_url: width: 200 | image_tag: class: 'hk-img', loading: 'lazy' }}</button>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..5) -%}{%- assign ph = 'G' | append: i -%}<button type="button" aria-label="Imagen {{ i }}">{% render 'hk-img', image: blank, label: ph %}</button>{%- endfor -%}
+        {%- endif -%}
+      </div>
+      {%- assign vids = section.blocks | where: 'type', 'video' -%}
+      {%- if vids.size > 0 -%}
+        <h3 class="hk-center" style="margin:28px 0 12px;font-size:18px">{{ section.settings.videos_heading }}</h3>
+        <div class="hk-vids">
+          {%- for v in vids -%}
+            <div class="hk-vid" {{ v.shopify_attributes }}>
+              {%- if v.settings.video != blank -%}{{ v.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, image_size: '400x' }}{%- else -%}{% render 'hk-img', image: v.settings.image, asset: v.settings.image_asset, label: 'Video UGC', sizes: '200px' %}{%- endif -%}
+              <span class="hk-vid__play" aria-hidden="true">▶</span>
+              {%- if v.settings.caption != blank -%}<span class="hk-vid__cap">{{ v.settings.caption }}</span>{%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+    {%- endunless -%}
+
+    <div class="hk-bb__info">
+      {%- unless compact -%}
+      {%- if section.settings.proof != blank -%}
+        <div class="hk-bb__proof"><span class="hk-stars">★★★★★</span> {{ section.settings.proof }}
+          {%- if avatars.size > 0 -%}<span class="hk-avatars">{%- for a in avatars -%}{%- capture src -%}{% render 'hk-src', image: a.settings.image, asset: a.settings.image_asset, width: 80 %}{%- endcapture -%}{%- if src != blank -%}<img src="{{ src }}" loading="lazy" alt="" width="26" height="26">{%- endif -%}{%- endfor -%}</span>{%- endif -%}
+        </div>
+      {%- endif -%}
+      <p class="hk-bb__eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1>{{ section.settings.heading | default: product.title }}</h1>
+      <p>{{ section.settings.subheading }}</p>
+      {%- assign feats = section.settings.features | newline_to_br | split: '<br />' -%}
+      <ul class="hk-bb__feats">{%- for f in feats -%}{%- assign t = f | strip -%}{%- if t != blank -%}<li>{{ t }}</li>{%- endif -%}{%- endfor -%}</ul>
+      {%- endunless -%}
+
+      {%- if section.settings.scarcity > 0 -%}
+        <div class="hk-scar"><div class="hk-scar__bar"><i style="width: {{ section.settings.scarcity }}%"></i></div>{{ section.settings.scarcity }}% {{ section.settings.scarcity_label }}</div>
+      {%- endif -%}
+
+      <div class="hk-bb__price">
+        <b data-hk-price>{{ current.price | money_without_trailing_zeros }}</b>
+        {%- if current.compare_at_price > current.price -%}
+          <s data-hk-compare>{{ current.compare_at_price | money_without_trailing_zeros }}</s>
+          <span class="hk-badge" data-hk-save>Ahorras {{ current.compare_at_price | minus: current.price | money_without_trailing_zeros }}</span>
+        {%- endif -%}
+      </div>
+
+      {%- form 'product', product, data-hk-form: '' -%}
+        <input type="hidden" name="id" value="{{ current.id }}" data-hk-id>
+        {%- if color_opt -%}
+          <p><strong>{{ color_opt.name }}:</strong> <span data-hk-color-label>{{ current.options[0] }}</span></p>
+          <div class="hk-swatches">
+            {%- for v in color_opt.values -%}
+              <label><input type="radio" name="hk-color" value="{{ v | escape }}" {% if v == current.options[0] %}checked{% endif %}><span>{{ v }}</span></label>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- for b in offers -%}
+          <label class="hk-offer" {{ b.shopify_attributes }}>
+            {%- if b.settings.tag != blank -%}<span class="hk-offer__tag">{{ b.settings.tag }}</span>{%- endif -%}
+            <input type="radio" name="hk-offer" value="{{ b.settings.option_value | escape }}" {% if forloop.first %}checked{% endif %}>
+            <span><span class="hk-offer__name">{{ b.settings.title }}</span><br><span class="hk-offer__meta">{{ b.settings.meta }}</span></span>
+            <span class="hk-offer__price" data-hk-offer-price="{{ b.settings.option_value | escape }}"></span>
+            {%- if b.settings.gift != blank -%}<span class="hk-offer__gift">🎁 {{ b.settings.gift }}</span>{%- endif -%}
+          </label>
+        {%- endfor -%}
+
+        {%- if gifts.size > 0 -%}
+          <div class="hk-gifts">
+            <span class="hk-gifts__label">{{ section.settings.gifts_label }}</span>
+            {%- for g in gifts -%}
+              <div class="hk-gift{% if g.settings.locked %} is-locked{% endif %}" data-hk-gift-locked="{{ g.settings.unlock_offer | escape }}" {{ g.shopify_attributes }}>
+                <div class="hk-gift__img">{% render 'hk-img', image: g.settings.image, asset: g.settings.image_asset, label: g.settings.title %}</div>
+                {%- if g.settings.value != blank -%}<s>{{ g.settings.value }}</s>{%- endif -%}
+                <span class="hk-gift__t">{{ g.settings.title }}</span>
+                <span class="hk-gift__lock">🔒 Bloqueado</span>
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+        <p class="hk-ship" data-hk-eta="{{ section.settings.eta_days }}">{{ section.settings.shipping }} <strong data-hk-eta-date></strong>{% if section.settings.origin != blank %} · {{ section.settings.origin }}{% endif %}</p>
+        <input type="hidden" name="return_to" value="/checkout">
+        <button type="submit" name="add" class="hk-btn hk-btn--block" data-hk-submit {% unless current.available %}disabled{% endunless %}>{{ section.settings.button }}</button>
+        <div class="hk-trust">{%- assign trust = section.settings.trust | split: '|' -%}{%- for t in trust -%}<span>{{ t | strip }}</span>{%- endfor -%}</div>
+      {%- endform -%}
+
+      {%- for b in accs -%}
+        <details class="hk-acc" {{ b.shopify_attributes }}><summary>{{ b.settings.title }}</summary><div class="hk-acc__body">{{ b.settings.body }}</div></details>
+      {%- endfor -%}
+    </div>
+  </div>
+  <script type="application/json" data-hk-variants>
+    [{%- for v in product.variants -%}{"id":{{ v.id }},"o1":{{ v.option1 | json }},"o2":{{ v.option2 | json }},"price":{{ v.price | money_without_trailing_zeros | json }},"compare":{% if v.compare_at_price > v.price %}{{ v.compare_at_price | money_without_trailing_zeros | json }}{% else %}null{% endif %},"save":{{ v.compare_at_price | minus: v.price | money_without_trailing_zeros | json }},"available":{{ v.available }},"img":{% if v.featured_media %}{{ v.featured_media | image_url: width: 1600 | json }}{% else %}null{% endif %}}{% unless forloop.last %},{% endunless %}{%- endfor -%}]
+  </script>
+  <script>
+    (() => {
+      const root = document.currentScript.closest('.hk-bb');
+      const vs = JSON.parse(root.querySelector('[data-hk-variants]').textContent);
+      const $ = s => root.querySelector(s);
+      const pick = n => (root.querySelector(`input[name="${n}"]:checked`) || {}).value;
+      const hasColor = !!root.querySelector('input[name="hk-color"]');
+      const find = (c, o) => vs.find(v => (!hasColor || v.o1 === c) && (hasColor ? v.o2 === o : v.o1 === o)) || vs[0];
+      const main = $('[data-hk-main]');
+      const setImg = src => { if (src && main) main.innerHTML = `<img class="hk-img" src="${src}" alt="">`; };
+      const update = () => {
+        const c = pick('hk-color'), o = pick('hk-offer'), v = find(c, o);
+        $('[data-hk-id]').value = v.id;
+        $('[data-hk-price]').textContent = v.price;
+        const cmp = $('[data-hk-compare]'), save = $('[data-hk-save]');
+        if (cmp) cmp.textContent = v.compare || '';
+        if (save) save.textContent = v.compare ? `Ahorras ${v.save}` : '';
+        const lbl = $('[data-hk-color-label]'); if (lbl && c) lbl.textContent = c;
+        root.querySelectorAll('[data-hk-offer-price]').forEach(el => {
+          const ov = find(c, el.dataset.hkOfferPrice);
+          el.innerHTML = `<b>${ov.price}</b>${ov.compare ? `<s>${ov.compare}</s>` : ''}`;
+        });
+        $('[data-hk-submit]').disabled = !v.available;
+        if (v.img) setImg(v.img);
+        root.querySelectorAll('[data-hk-gift-locked]').forEach(g => {
+          const need = g.dataset.hkGiftLocked; if (need) g.classList.toggle('is-locked', o !== need);
+        });
+      };
+      const eta = root.querySelector('[data-hk-eta]');
+      if (eta && +eta.dataset.hkEta) {
+        const d = new Date(); let n = +eta.dataset.hkEta;
+        while (n > 0) { d.setDate(d.getDate() + 1); if (d.getDay() % 6) n--; }
+        eta.querySelector('[data-hk-eta-date]').textContent = d.toLocaleDateString('es-CO', { weekday: 'short', day: 'numeric', month: 'short' });
+      }
+      // App COD (Releasit u otra): si inyecta su botón en el formulario, se oculta el nuestro (queda de respaldo si la app no carga).
+      const codSel = {{ section.settings.cod_selector | json }};
+      if (codSel) {
+        const form = root.querySelector('[data-hk-form]'), own = root.querySelector('[data-hk-submit]');
+        const sync = () => { if (form && own) own.hidden = !!form.querySelector(codSel); };
+        sync(); new MutationObserver(sync).observe(form, { childList: true, subtree: true });
+        // Si la app solo se montó en otro bloque de compra (p. ej. el principal), este botón copia la selección y abre ese formulario.
+        form?.addEventListener('submit', e => {
+          if (form.querySelector(codSel)) return;
+          const host = [...document.querySelectorAll('.hk-bb')].find(s => s !== root && s.querySelector('[data-hk-form] ' + codSel));
+          if (!host) return;
+          e.preventDefault();
+          ['hk-color', 'hk-offer'].forEach(n => {
+            const v = pick(n), t = v && [...host.querySelectorAll(`input[name="${n}"]`)].find(i => i.value === v);
+            if (t && !t.checked) { t.checked = true; t.dispatchEvent(new Event('change', { bubbles: true })); }
+          });
+          (host.querySelector('[data-hk-form] button' + codSel) || host.querySelector('[data-hk-form] ' + codSel)).click();
+        });
+      }
+      root.addEventListener('change', e => { if (e.target.name === 'hk-color' || e.target.name === 'hk-offer') update(); });
+      root.querySelectorAll('.hk-gal__thumbs button[data-src]').forEach(b => b.addEventListener('click', () => {
+        root.querySelectorAll('.hk-gal__thumbs button').forEach(x => x.removeAttribute('aria-current'));
+        b.setAttribute('aria-current', 'true'); setImg(b.dataset.src);
+      }));
+      update();
+    })();
+  </script>
+</section>
+{% schema %}
+{ "name": "HK · Bloque compra",
+  "settings": [
+    { "type": "select", "id": "layout", "label": "Diseño", "default": "full", "options": [{ "value": "full", "label": "Completo (galería)" }, { "value": "compact", "label": "Compacto (oferta repetida)" }] },
+    { "type": "image_picker", "id": "header_image", "label": "Imagen superior (compacto)" }, { "type": "text", "id": "header_image_asset", "label": "Imagen superior (compacto) · archivo del tema" },
+    { "type": "text", "id": "videos_heading", "label": "Título de videos bajo la galería", "default": "Lo que dicen nuestros clientes:" },
+    { "type": "text", "id": "gifts_label", "label": "Etiqueta regalos", "default": "REGALOS DESBLOQUEADOS" },
+    { "type": "range", "id": "eta_days", "label": "Días hábiles de entrega (fecha automática, 0 = sin fecha)", "min": 0, "max": 10, "step": 1, "default": 3 },
+    { "type": "text", "id": "origin", "label": "Origen del envío" },
+    { "type": "text", "id": "proof", "label": "Prueba social (con fuente)" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Título (vacío = nombre del producto)" },
+    { "type": "textarea", "id": "subheading", "label": "Subtítulo" },
+    { "type": "textarea", "id": "features", "label": "Beneficios (uno por línea)" },
+    { "type": "text", "id": "color_option", "label": "Nombre de la opción de color", "default": "Color" },
+    { "type": "range", "id": "scarcity", "label": "Barra de escasez % (0 = ocultar)", "min": 0, "max": 99, "step": 1, "default": 0 },
+    { "type": "text", "id": "scarcity_label", "label": "Texto escasez", "default": "vendido" },
+    { "type": "text", "id": "shipping", "label": "Texto de entrega" },
+    { "type": "text", "id": "button", "label": "Botón", "default": "PEDIR AHORA · PAGO CONTRAENTREGA" },
+    { "type": "text", "id": "trust", "label": "Confianza (separar con |)" },
+    { "type": "text", "id": "cod_selector", "label": "Selector del botón de la app COD (oculta el botón propio si aparece)", "default": "[class*=\"rsi_\"]", "info": "Releasit: [class*=\"rsi_\"]. Vacío = siempre mostrar el botón propio." }
+  ],
+  "blocks": [
+    { "type": "offer", "name": "Oferta", "settings": [
+      { "type": "text", "id": "option_value", "label": "Valor de la opción (igual que en la variante)" },
+      { "type": "text", "id": "title", "label": "Título" },
+      { "type": "text", "id": "meta", "label": "Detalle" },
+      { "type": "text", "id": "tag", "label": "Etiqueta (ej. Más elegido)" },
+      { "type": "text", "id": "gift", "label": "Regalo" } ] },
+    { "type": "gift", "name": "Regalo", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Imagen" }, { "type": "text", "id": "image_asset", "label": "Imagen · archivo del tema" }, { "type": "text", "id": "title", "label": "Título" },
+      { "type": "text", "id": "value", "label": "Valor tachado" }, { "type": "checkbox", "id": "locked", "label": "Bloqueado al inicio" },
+      { "type": "text", "id": "unlock_offer", "label": "Se desbloquea con la oferta (valor exacto)" } ] },
+    { "type": "video", "name": "Video bajo galería", "settings": [
+      { "type": "video", "id": "video", "label": "Video vertical" }, { "type": "image_picker", "id": "image", "label": "Imagen si no hay video" }, { "type": "text", "id": "image_asset", "label": "Imagen si no hay video · archivo del tema" },
+      { "type": "text", "id": "caption", "label": "Subtítulo" } ] },
+    { "type": "avatar", "name": "Avatar", "settings": [{ "type": "image_picker", "id": "image", "label": "Foto" }, { "type": "text", "id": "image_asset", "label": "Foto · archivo del tema" }] },
+    { "type": "accordion", "name": "Acordeón", "settings": [
+      { "type": "text", "id": "title", "label": "Título" },
+      { "type": "richtext", "id": "body", "label": "Contenido" } ] }
+  ],
+  "enabled_on": { "templates": ["product"] },
+  "presets": [{ "name": "HK · Bloque compra" }] }
+{% endschema %}

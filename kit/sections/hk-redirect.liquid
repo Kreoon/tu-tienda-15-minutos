@@ -1,0 +1,23 @@
+{%- comment -%}
+  Tienda de un solo producto: el inicio lleva directo a la landing del producto elegido o, si no hay, al primer producto publicado.
+  No redirige dentro del editor de temas para poder editar la página.
+{%- endcomment -%}
+{%- liquid
+  assign target = section.settings.product.url
+  if target == blank
+    assign target = collections.all.products.first.url
+  endif
+-%}
+{%- if target != blank -%}
+  {%- unless request.design_mode -%}
+    <script>location.replace({{ target | json }} + location.search);</script>
+    <noscript><meta http-equiv="refresh" content="0; url={{ target }}"></noscript>
+  {%- endunless -%}
+  <p style="text-align:center;padding:48px 16px"><a href="{{ target }}">{{ section.settings.text }}</a></p>
+{%- endif -%}
+{% schema %}
+{ "name": "HK · Redirigir a producto", "settings": [
+  { "type": "product", "id": "product", "label": "Producto" },
+  { "type": "text", "id": "text", "label": "Texto del enlace", "default": "Ir a la tienda" } ],
+  "presets": [{ "name": "HK · Redirigir a producto" }] }
+{% endschema %}

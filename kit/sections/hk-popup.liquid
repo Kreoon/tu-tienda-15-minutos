@@ -1,0 +1,42 @@
+{% render 'hk-head' %}
+<div class="hk hk-pop" data-hk-pop role="dialog" aria-modal="true" aria-label="{{ section.settings.heading | strip_html | escape }}">
+  <div class="hk-pop__box">
+    <button type="button" class="hk-pop__close" data-hk-pop-close aria-label="Cerrar">✕</button>
+    <div class="hk-pop__body">
+      {%- capture src -%}{% render 'hk-src', image: section.settings.logo, asset: section.settings.logo_asset, width: 280 %}{%- endcapture -%}{%- if src != blank -%}<img src="{{ src }}" style="max-width:140px;height:auto" alt="{{ shop.name | escape }}">{%- endif -%}
+      <span class="hk-pop__pill">{{ section.settings.pill }}</span>
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.text }}</p>
+      <div class="hk-scratch"><span>{{ section.settings.prize }}</span><canvas width="200" height="100" aria-label="Rasca aquí"></canvas></div>
+      <small>☝ Rasca arriba</small>
+    </div>
+    <div class="hk-pop__img">{% render 'hk-img', image: section.settings.image, asset: section.settings.image_asset, label: 'Imagen del popup' %}</div>
+  </div>
+</div>
+<script>
+  (() => {
+    const pop = document.currentScript.previousElementSibling, key = 'hk-pop-seen';
+    try { if (sessionStorage.getItem(key) || {{ section.settings.enabled | json }} === false) return; } catch (e) {}
+    const close = () => { pop.classList.remove('is-open'); try { sessionStorage.setItem(key, 1); } catch (e) {} };
+    setTimeout(() => pop.classList.add('is-open'), {{ section.settings.delay | times: 1000 }});
+    pop.addEventListener('click', e => { if (e.target === pop || e.target.closest('[data-hk-pop-close]')) close(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+    const c = pop.querySelector('canvas'), x = c.getContext('2d');
+    const g = x.createLinearGradient(0, 0, 200, 100); g.addColorStop(0, '#d9b45a'); g.addColorStop(1, '#f3de9a');
+    x.fillStyle = g; x.fillRect(0, 0, 200, 100); x.fillStyle = '#6b5214'; x.font = '600 18px sans-serif'; x.textAlign = 'center'; x.fillText('¡Rasca aquí!', 100, 56);
+    let down = false; x.globalCompositeOperation = 'destination-out';
+    const scratch = e => { if (!down) return; const r = c.getBoundingClientRect(), p = e.touches ? e.touches[0] : e; x.beginPath(); x.arc(p.clientX - r.left, p.clientY - r.top, 16, 0, 7); x.fill(); };
+    ['mousedown', 'touchstart'].forEach(t => c.addEventListener(t, e => { down = true; scratch(e); }, { passive: true }));
+    ['mouseup', 'touchend', 'mouseleave'].forEach(t => c.addEventListener(t, () => down = false));
+    ['mousemove', 'touchmove'].forEach(t => c.addEventListener(t, scratch, { passive: true }));
+  })();
+</script>
+{% schema %}
+{ "name": "HK · Popup rasca y gana", "settings": [
+  { "type": "checkbox", "id": "enabled", "label": "Activo", "default": true },
+  { "type": "range", "id": "delay", "label": "Aparece a los (s)", "min": 1, "max": 20, "step": 1, "default": 4 },
+  { "type": "image_picker", "id": "logo", "label": "Logo" }, { "type": "text", "id": "logo_asset", "label": "Logo · archivo del tema" }, { "type": "text", "id": "pill", "label": "Etiqueta" },
+  { "type": "text", "id": "heading", "label": "Título" }, { "type": "text", "id": "text", "label": "Texto" },
+  { "type": "text", "id": "prize", "label": "Premio (debe existir de verdad)" }, { "type": "image_picker", "id": "image", "label": "Imagen" }, { "type": "text", "id": "image_asset", "label": "Imagen · archivo del tema" } ],
+  "presets": [{ "name": "HK · Popup rasca y gana" }] }
+{% endschema %}

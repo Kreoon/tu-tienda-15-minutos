@@ -1,0 +1,13 @@
+{% render 'hk-head' %}
+<div class="hk hk-mq" aria-label="Beneficios">
+  <div class="hk-mq__track">
+    {%- for i in (1..2) -%}
+      {%- for block in section.blocks -%}<span class="hk-mq__item" {% if i == 2 %}aria-hidden="true"{% endif %} {{ block.shopify_attributes }}>{{ block.settings.text }}</span>{%- endfor -%}
+      {%- for block in section.blocks -%}<span class="hk-mq__item" aria-hidden="true">{{ block.settings.text }}</span>{%- endfor -%}
+    {%- endfor -%}
+  </div>
+</div>
+{% schema %}
+{ "name": "HK · Cinta beneficios", "blocks": [{ "type": "item", "name": "Beneficio", "settings": [{ "type": "text", "id": "text", "label": "Texto", "default": "Beneficio" }] }],
+  "presets": [{ "name": "HK · Cinta beneficios" }] }
+{% endschema %}

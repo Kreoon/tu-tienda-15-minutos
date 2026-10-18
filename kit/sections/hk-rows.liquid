@@ -1,0 +1,26 @@
+{% render 'hk-head' %}
+<section class="hk hk-sec hk-sec--alt">
+  <div class="hk-wrap">
+    <div class="hk-center"><h2>{{ section.settings.heading }}</h2><p class="hk-sub">{{ section.settings.text }}</p></div>
+    <div class="hk-grid hk-grid--2">
+      {%- for b in section.blocks -%}
+        <details class="hk-card" {{ b.shopify_attributes }}>
+          <summary class="hk-row" style="list-style:none;cursor:pointer">
+            <div class="hk-row__img">{% render 'hk-img', image: b.settings.image, asset: b.settings.image_asset, label: b.settings.ph %}</div>
+            <div><h3>{{ b.settings.title }}</h3><p>{{ b.settings.subtitle }}</p></div>
+          </summary>
+          <div class="hk-acc__body">{{ b.settings.text }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.button != blank -%}<p class="hk-center" style="margin-top:32px"><a class="hk-btn" href="#comprar">{{ section.settings.button }}</a></p>{%- endif -%}
+  </div>
+</section>
+{% schema %}
+{ "name": "HK · Beneficios filas", "settings": [
+  { "type": "text", "id": "heading", "label": "Título" }, { "type": "textarea", "id": "text", "label": "Subtítulo" }, { "type": "text", "id": "button", "label": "Botón" } ],
+  "blocks": [{ "type": "row", "name": "Fila", "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagen" }, { "type": "text", "id": "image_asset", "label": "Imagen · archivo del tema" }, { "type": "text", "id": "ph", "label": "Etiqueta placeholder" },
+    { "type": "text", "id": "title", "label": "Título" }, { "type": "text", "id": "subtitle", "label": "Subtítulo" }, { "type": "textarea", "id": "text", "label": "Texto expandible" } ] }],
+  "presets": [{ "name": "HK · Beneficios filas" }] }
+{% endschema %}

@@ -1,0 +1,18 @@
+{%- comment -%}
+  Imagen, asset del tema o placeholder.
+  Uso: {% render 'hk-img', image: b.settings.image, asset: b.settings.image_asset, label: 'G1 · Producto', sizes: '50vw', eager: false %}
+  `asset` = nombre de archivo en assets/ del tema (p. ej. hk-g1.jpg): evita subir a Archivos en cada corrida.
+{%- endcomment -%}
+{%- liquid
+  assign loading = 'lazy'
+  if eager
+    assign loading = 'eager'
+  endif
+-%}
+{%- if image != blank -%}
+  {{ image | image_url: width: 1600 | image_tag: class: 'hk-img', loading: loading, sizes: sizes, widths: '400, 800, 1200, 1600', alt: image.alt | default: label }}
+{%- elsif asset != blank -%}
+  <img class="hk-img" src="{{ asset | asset_url }}" loading="{{ loading }}" alt="{{ label | escape }}">
+{%- else -%}
+  <div class="hk-ph" role="img" aria-label="{{ label | escape }}">{{ label }}</div>
+{%- endif -%}

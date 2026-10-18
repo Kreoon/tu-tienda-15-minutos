@@ -1,0 +1,2 @@
+{%- comment -%} Devuelve solo la URL (usar dentro de capture). {% render 'hk-src', image: x, asset: y, width: 80 %} {%- endcomment -%}
+{%- if image != blank -%}{{ image | image_url: width: width }}{%- elsif asset != blank -%}{{ asset | asset_url }}{%- endif -%}

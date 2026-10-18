@@ -1,0 +1,29 @@
+{% render 'hk-head' %}
+<section class="hk hk-dark hk-sec hk-cmp">
+  <div class="hk-wrap hk-cmp__grid">
+    <div class="hk-cmp__table">
+      <div class="hk-cmp__col hk-cmp__col--us">
+        <h3>{{ section.settings.us }}</h3>
+        {%- for b in section.blocks -%}<div {{ b.shopify_attributes }}>✓ {{ b.settings.us }}</div>{%- endfor -%}
+      </div>
+      <div class="hk-cmp__col hk-cmp__col--them">
+        <h3>{{ section.settings.them }}</h3>
+        {%- for b in section.blocks -%}<div>✕ {{ b.settings.them }}</div>{%- endfor -%}
+      </div>
+    </div>
+    <div>
+      <h2>{{ section.settings.heading }}</h2>
+      {%- assign pts = section.settings.points | newline_to_br | split: '<br />' -%}
+      <ul class="hk-cmp__list">{%- for p in pts -%}{%- assign t = p | strip -%}{%- if t != blank -%}<li>{{ t }}</li>{%- endif -%}{%- endfor -%}</ul>
+      <a class="hk-btn hk-btn--accent hk-btn--block" href="#comprar" style="border-radius:999px">{{ section.settings.button }}</a>
+    </div>
+  </div>
+</section>
+{% schema %}
+{ "name": "HK · Comparativa", "settings": [
+  { "type": "text", "id": "us", "label": "Columna nuestra" }, { "type": "text", "id": "them", "label": "Columna otros" },
+  { "type": "text", "id": "heading", "label": "Título" }, { "type": "textarea", "id": "points", "label": "Puntos (uno por línea)" },
+  { "type": "text", "id": "button", "label": "Botón", "default": "Pídelos sin riesgo" } ],
+  "blocks": [{ "type": "row", "name": "Fila", "settings": [{ "type": "text", "id": "us", "label": "Nosotros" }, { "type": "text", "id": "them", "label": "Otros" }] }],
+  "presets": [{ "name": "HK · Comparativa" }] }
+{% endschema %}

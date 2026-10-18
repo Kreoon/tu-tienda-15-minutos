@@ -1,0 +1,28 @@
+{% render 'hk-head' %}
+<section class="hk hk-sec">
+  <div class="hk-wrap hk-tl__grid">
+    <div class="hk-center">
+      <div class="hk-tl__img">{% render 'hk-img', image: section.settings.image, asset: section.settings.image_asset, label: 'L1 · Escena de marca' %}</div>
+      <h2>{{ section.settings.heading }}</h2>
+      <p class="hk-sub">{{ section.settings.text }}</p>
+      <a class="hk-btn hk-btn--block" href="#comprar" style="border-radius:999px">{{ section.settings.button }}</a>
+    </div>
+    <div class="hk-tl__steps">
+      {%- for b in section.blocks -%}
+        {%- assign items = b.settings.items | newline_to_br | split: '<br />' -%}
+        <div class="hk-tl__step" {{ b.shopify_attributes }}>
+          <h3>{{ b.settings.title }}</h3>
+          <ul>{%- for i in items -%}{%- assign t = i | strip -%}{%- if t != blank -%}<li>{{ t }}</li>{%- endif -%}{%- endfor -%}</ul>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{ "name": "HK · Línea de tiempo", "settings": [
+  { "type": "image_picker", "id": "image", "label": "Imagen" }, { "type": "text", "id": "image_asset", "label": "Imagen · archivo del tema" },
+  { "type": "text", "id": "heading", "label": "Título" }, { "type": "textarea", "id": "text", "label": "Texto" },
+  { "type": "text", "id": "button", "label": "Botón", "default": "Quiero los míos →" } ],
+  "blocks": [{ "type": "step", "name": "Paso", "settings": [{ "type": "text", "id": "title", "label": "Título" }, { "type": "textarea", "id": "items", "label": "Puntos (uno por línea)" }] }],
+  "presets": [{ "name": "HK · Línea de tiempo" }] }
+{% endschema %}

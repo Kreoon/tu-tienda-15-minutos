@@ -1,0 +1,25 @@
+{% render 'hk-head' %}
+<div class="hk hk-ann">
+  <strong>{{ section.settings.title }}</strong>
+  <span>{{ section.settings.text }}</span>
+  {%- if section.settings.countdown_hours > 0 -%}
+    <span class="hk-cd" data-hk-cd="{{ section.settings.countdown_hours }}" aria-label="Tiempo restante de la oferta"><span>00</span>:<span>00</span>:<span>00</span></span>
+    <script>
+      (() => {
+        const el = document.currentScript.previousElementSibling, h = +el.dataset.hkCd, key = 'hk-cd-end';
+        let end = +sessionStorage.getItem(key);
+        if (!end || end < Date.now()) { end = Date.now() + h * 3600e3; sessionStorage.setItem(key, end); }
+        const s = el.querySelectorAll('span'), pad = n => String(n).padStart(2, '0');
+        const tick = () => { const t = Math.max(0, end - Date.now()) / 1000; s[0].textContent = pad(t / 3600 | 0); s[1].textContent = pad(t % 3600 / 60 | 0); s[2].textContent = pad(t % 60 | 0); };
+        tick(); setInterval(tick, 1000);
+      })();
+    </script>
+  {%- endif -%}
+</div>
+{% schema %}
+{ "name": "HK · Anuncio", "settings": [
+  { "type": "text", "id": "title", "label": "Título", "default": "LANZAMIENTO" },
+  { "type": "text", "id": "text", "label": "Texto", "default": "Paga al recibir · Envío a toda Colombia" },
+  { "type": "range", "id": "countdown_hours", "label": "Contador (horas, 0 = sin contador)", "min": 0, "max": 48, "step": 1, "default": 2 }
+], "presets": [{ "name": "HK · Anuncio" }] }
+{% endschema %}

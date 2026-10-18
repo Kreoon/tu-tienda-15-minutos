@@ -1,0 +1,7 @@
+/* Tokens neutros del tema base (cada corrida los reemplaza desde brief.json → tokens). */
+.hk {
+  --hk-primary: #111111; --hk-secondary: #444444; --hk-accent: #f2f2f2; --hk-bg-alt: #f6f6f6;
+  --hk-text: #121212; --hk-text-soft: #555555; --hk-border: #dddddd; --hk-alert: #c62828;
+  --hk-dark-2: #2a2a2a; --hk-dark-3: #111111; --hk-cmp-us: #333333;
+  --hk-font-head: system-ui, -apple-system, sans-serif; --hk-font-body: system-ui, -apple-system, sans-serif;
+}

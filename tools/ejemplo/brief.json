@@ -1,0 +1,538 @@
+{
+ "tema": {
+  "sufijo": "ejemplo",
+  "nombre": "MiTienda · Audífonos de ejemplo"
+ },
+ "marca": {
+  "nombre": "MiTienda",
+  "logo": "logo",
+  "logo_blanco": "logo_blanco"
+ },
+ "producto": {
+  "handle": "sony-wh-ch720n",
+  "titulo": "Audífonos Sony WH-CH720N con cancelación de ruido",
+  "marca": "Sony",
+  "tipo": "Audífonos",
+  "sku": "WHCH720N",
+  "tags": [
+   "tienda-express",
+   "contraentrega"
+  ],
+  "opcion_color": "Color",
+  "colores": [
+   "Negro",
+   "Blanco",
+   "Rosado"
+  ],
+  "descripcion_html": "<p>Los Sony WH-CH720N son los audífonos de diadema con cancelación de ruido más livianos de Sony. El procesador integrado V1 y la tecnología de sensor de ruido dual reducen el ruido de tu entorno para que te concentres en tu música, tus clases o tus llamadas.</p><ul><li>Hasta 35 horas de batería con la cancelación de ruido encendida</li><li>Multipunto: conecta 2 dispositivos a la vez</li><li>Captación precisa de voz para llamadas claras</li><li>Ecualizador en la app Sony | Headphones Connect</li></ul><p>Incluye: audífonos, cable de audio y cable USB. Pago contraentrega en toda Colombia.</p>",
+  "seo": {
+   "title": "Audífonos Sony WH-CH720N con cancelación de ruido | MiTienda",
+   "description": "Audífonos Sony con cancelación de ruido, 35 h de batería y multipunto. Paga al recibir en toda Colombia."
+  },
+  "galeria": [
+   "g1",
+   "g2",
+   "g3",
+   "g4",
+   "g5"
+  ],
+  "ofertas": [
+   {
+    "valor": "1 unidad",
+    "titulo": "Lleva 1",
+    "detalle": "$349.900 la unidad",
+    "precio": 349900,
+    "antes": 459900,
+    "sku_sufijo": "X1"
+   },
+   {
+    "valor": "Pack x2 + estuche de regalo",
+    "titulo": "Lleva 2 + regalo",
+    "detalle": "$314.950 c/u · Uno para ti y otro para regalar",
+    "etiqueta": "Más elegido",
+    "regalo": "GRATIS Estuche rígido de viaje (valor $59.900)",
+    "precio": 629900,
+    "antes": 919800,
+    "sku_sufijo": "X2"
+   }
+  ]
+ },
+ "tokens": {
+  "primario": "#095946",
+  "secundario": "#009370",
+  "acento": "#FFF7D4",
+  "fondo_alterno": "#F1F0EA",
+  "texto": "#121212",
+  "texto_suave": "#4b4f4c",
+  "borde": "#dcdcd6",
+  "alerta": "#D93B3B",
+  "oscuro_2": "#3c4a1f",
+  "oscuro_3": "#1d2410",
+  "comparativa": "#5a6b2b"
+ },
+ "anuncio": {
+  "titulo": "LANZAMIENTO MiTienda",
+  "texto": "Hasta 24 % de descuento · Paga al recibir",
+  "horas": 2
+ },
+ "popup": {
+  "segundos": 5,
+  "etiqueta": "Lanzamiento MiTienda 🎧",
+  "titulo": "¡Estás de suerte!",
+  "texto": "Rasca la tarjeta y mira lo que ganaste 👀",
+  "premio": "ENVÍO GRATIS HOY",
+  "img": "g3"
+ },
+ "cinta": [
+  "Cancelación de ruido",
+  "35 h de batería",
+  "2 dispositivos a la vez",
+  "Llamadas claras",
+  "Livianos y cómodos",
+  "Pagas al recibir"
+ ],
+ "compra": {
+  "prueba_social": "Calificados 4,4/5 en Amazon · 490 opiniones",
+  "eyebrow": "Audífonos Sony con cancelación de ruido",
+  "titulo": "Silencio para ti, música para todo el día",
+  "subtitulo": "Los Sony WH-CH720N bajan el ruido del bus, la oficina y la calle, y te acompañan hasta 35 horas con una sola carga.",
+  "beneficios": [
+   "Cancelación de ruido",
+   "35 h de batería",
+   "Multipunto",
+   "Llamadas claras",
+   "Procesador V1",
+   "Carga rápida"
+  ],
+  "escasez": 87,
+  "escasez_texto": "vendido · Lote de lanzamiento",
+  "entrega_dias": 3,
+  "entrega_texto": "Pide hoy y recíbelo el",
+  "origen": "Envío desde Colombia 🇨🇴",
+  "boton": "PEDIR AHORA · PAGO CONTRAENTREGA",
+  "confianza": "🔒 No pagas nada por adelantado | ↩ Devolución hasta 7 días",
+  "regalos": [
+   {
+    "img": "g1",
+    "titulo": "Envío GRATIS",
+    "valor": "$15.000"
+   },
+   {
+    "img": "g2",
+    "titulo": "Estuche de viaje GRATIS",
+    "valor": "$59.900",
+    "bloqueado": true,
+    "se_desbloquea_con": "Pack x2 + estuche de regalo"
+   },
+   {
+    "img": "w1",
+    "titulo": "Garantía 7 días",
+    "valor": ""
+   }
+  ],
+  "avatares": [
+   "ugc04",
+   "ugc11",
+   "ugc03",
+   "ugc07"
+  ],
+  "acordeones": [
+   {
+    "titulo": "Descripción",
+    "html": "<p>Los WH-CH720N son los audífonos de diadema con cancelación de ruido más livianos de Sony. El procesador integrado V1 y la tecnología de sensor de ruido dual reducen el ruido de tu entorno para que te concentres en tu música, tus clases o tus llamadas. Hasta 35 horas de batería con la cancelación de ruido encendida.</p>"
+   },
+   {
+    "titulo": "¿Por qué estos audífonos?",
+    "html": "<p>Si tu día pasa entre el bus, la oficina y la casa, el ruido cansa. Con estos te aíslas cuando quieres, cambias del computador al celular sin volver a emparejar y llegas al viernes con batería.</p>"
+   },
+   {
+    "titulo": "Sobre tu regalo",
+    "html": "<p><strong>Estuche rígido de viaje:</strong> protege tus audífonos en la maleta o el morral. Viene de regalo con el Pack x2.</p><p><strong>Envío gratis:</strong> en todos los pedidos de hoy.</p>"
+   },
+   {
+    "titulo": "Especificaciones",
+    "html": "<ul><li>Diadema sobre la oreja</li><li>Bluetooth con multipunto (2 dispositivos)</li><li>Swift Pair y Fast Pair</li><li>Cancelación activa de ruido con sensor dual</li><li>Procesador V1 y DSEE</li><li>Ecualizador en la app Sony | Headphones Connect · 360 Reality Audio</li><li>Micrófonos con formación de haz</li><li>Compatible con Google Assistant y Siri</li><li>Cable de audio para uso con cable</li><li>No resistentes al agua</li></ul>"
+   },
+   {
+    "titulo": "Qué incluye",
+    "html": "<p>Audífonos Sony WH-CH720N, cable de audio y cable USB. En el Pack x2: estuche rígido de viaje de regalo.</p>"
+   },
+   {
+    "titulo": "¿Tienen garantía?",
+    "html": "<p>Sí. Tienes hasta 7 días después de la entrega. Si llega dañado o con defecto, te devolvemos el dinero o te lo cambiamos. Si simplemente no te gustó, lo puedes devolver y el envío de regreso corre por tu cuenta.</p>"
+   }
+  ],
+  "videos": [
+   {
+    "img": "ugc11",
+    "texto": ""
+   },
+   {
+    "img": "ugc12",
+    "texto": "Los usé 1 semana"
+   },
+   {
+    "img": "ugc01",
+    "texto": "Por esto no vuelvo atrás"
+   }
+  ]
+ },
+ "cifras": {
+  "img": "t1",
+  "titulo": "Menos ruido. Más foco. Todo el día.",
+  "texto": "La tecnología de Sony, ahora con pago al recibir.",
+  "boton": "Pídelos sin riesgo hoy",
+  "items": [
+   {
+    "cifra": "35 h",
+    "texto": "De batería con cancelación de ruido"
+   },
+   {
+    "cifra": "2",
+    "texto": "Dispositivos conectados a la vez"
+   },
+   {
+    "cifra": "V1",
+    "texto": "Procesador integrado de Sony"
+   },
+   {
+    "cifra": "4,4/5",
+    "texto": "En Amazon, 490 calificaciones"
+   }
+  ]
+ },
+ "tecnologias": {
+  "titulo": "4 tecnologías <em>haciendo su trabajo</em>",
+  "items": [
+   {
+    "img": "t1",
+    "titulo": "Sensor de ruido dual",
+    "texto": "Dos micrófonos escuchan el ruido de afuera y la cancelación lo reduce para que no subas tanto el volumen."
+   },
+   {
+    "img": "t2",
+    "titulo": "Procesador V1",
+    "texto": "El cerebro de los audífonos: procesa la cancelación de ruido y el sonido con precisión."
+   },
+   {
+    "img": "t3",
+    "titulo": "DSEE",
+    "texto": "Recupera detalles de la música comprimida para que suene más natural."
+   },
+   {
+    "img": "t4",
+    "titulo": "Captación precisa de voz",
+    "texto": "Micrófonos con formación de haz y reducción de ruido de viento para que te escuchen claro."
+   }
+  ]
+ },
+ "resenas_destacadas": {
+  "titulo": "Historias reales, <em>resultados reales</em>",
+  "texto": "Mira lo que dicen quienes ya los usan.",
+  "fotos": [
+   "ugc01",
+   "ugc02",
+   "ugc03",
+   "ugc04",
+   "ugc05",
+   "ugc06",
+   "ugc07",
+   "ugc08",
+   "ugc09",
+   "ugc10"
+  ],
+  "resenas": [
+   {
+    "nota": "5.0",
+    "titulo": "Por fin trabajo sin escuchar la obra del vecino",
+    "texto": "Los uso en la casa y en el bus. La cancelación de ruido me cambió el día y la batería me dura toda la semana.",
+    "autor": "Laura M.",
+    "avatar": "ugc04",
+    "etiquetas": [
+     "Concentración",
+     "Batería"
+    ],
+    "demo": true
+   },
+   {
+    "nota": "4.9",
+    "titulo": "Livianos de verdad",
+    "texto": "Me los pongo a las 8 y me acuerdo que los tengo puestos a la hora del almuerzo. Nada de dolor de cabeza.",
+    "autor": "Andrés P.",
+    "avatar": "ugc05",
+    "etiquetas": [
+     "Comodidad",
+     "Uso diario"
+    ],
+    "demo": true
+   },
+   {
+    "nota": "5.0",
+    "titulo": "Llamadas clarísimas",
+    "texto": "Trabajo en llamadas todo el día y me dejaron de decir que no me escuchan. Y cambio del PC al celular sin desconectar.",
+    "autor": "Camila R.",
+    "avatar": "ugc06",
+    "etiquetas": [
+     "Llamadas",
+     "Multipunto"
+    ],
+    "demo": true
+   }
+  ]
+ },
+ "beneficios_producto": {
+  "titulo": "<em>Suenan mejor.</em> Todos los días.",
+  "texto": "Del primer trayecto de la mañana a la última serie de la noche.",
+  "img": "p1",
+  "items": [
+   {
+    "icono": "ANC",
+    "texto": "Cancelación de ruido"
+   },
+   {
+    "icono": "35h",
+    "texto": "35 h de batería"
+   },
+   {
+    "icono": "2×",
+    "texto": "Multipunto"
+   },
+   {
+    "icono": "🎙",
+    "texto": "Llamadas claras"
+   }
+  ]
+ },
+ "beneficios_filas": {
+  "titulo": "<em>Beneficios reales.</em> Para tu día a día.",
+  "texto": "Cuatro momentos en los que vas a notar la diferencia.",
+  "items": [
+   {
+    "img": "b1",
+    "titulo": "Trabajo y estudio",
+    "subtitulo": "Concéntrate en serio.",
+    "texto": "Baja el ruido de la oficina, el café o la casa y entra en modo foco."
+   },
+   {
+    "img": "b2",
+    "titulo": "Viajes",
+    "subtitulo": "El ruido se queda afuera.",
+    "texto": "Ideal para trayectos largos y vuelos; la batería aguanta hasta 35 horas."
+   },
+   {
+    "img": "t4",
+    "titulo": "Llamadas",
+    "subtitulo": "Te escuchan claro.",
+    "texto": "Micrófonos que captan tu voz y reducen el viento."
+   },
+   {
+    "img": "b4",
+    "titulo": "Música",
+    "subtitulo": "Tu música, como debe sonar.",
+    "texto": "Ajusta el sonido a tu gusto con el ecualizador de la app."
+   }
+  ]
+ },
+ "linea_tiempo": {
+  "img": "l1",
+  "titulo": "<em>Tu día</em> con los WH-CH720N",
+  "texto": "Hechos para usarlos todo el día, no solo un rato. Así cambia tu rutina.",
+  "boton": "Quiero los míos →",
+  "pasos": [
+   {
+    "titulo": "7:00 a. m. · Trayecto",
+    "puntos": [
+     "Cancelación de ruido encendida en el bus o el carro",
+     "Llegas sin el estrés del ruido",
+     "Tu playlist suena clara a volumen bajo"
+    ]
+   },
+   {
+    "titulo": "9:00 a. m. · Trabajo o clase",
+    "puntos": [
+     "Conectados al computador y al celular a la vez",
+     "Cambias sin volver a emparejar",
+     "Modo foco sin interrupciones"
+    ]
+   },
+   {
+    "titulo": "3:00 p. m. · Llamadas",
+    "puntos": [
+     "Micrófonos que captan tu voz",
+     "Tu equipo te escucha claro",
+     "Cómodos después de horas"
+    ]
+   },
+   {
+    "titulo": "9:00 p. m. · Descanso",
+    "puntos": [
+     "Tu serie o tu playlist",
+     "Todavía te queda batería para el resto de la semana",
+     "Carga rápida si se te olvida cargarlos"
+    ]
+   }
+  ]
+ },
+ "razones": {
+  "badge": "5 razones",
+  "titulo": "Por qué los WH-CH720N son distintos a todo lo que has probado",
+  "boton": "Pídelos sin riesgo hoy",
+  "prefijo": "Razón",
+  "items": [
+   {
+    "img": "z1",
+    "titulo": "Batería de 35 horas",
+    "texto": "Cárgalos el lunes y olvídate del cable buena parte de la semana."
+   },
+   {
+    "img": "z2",
+    "titulo": "Livianos de verdad",
+    "texto": "Los audífonos de diadema con cancelación de ruido más livianos de Sony."
+   },
+   {
+    "img": "z3",
+    "titulo": "Dos dispositivos a la vez",
+    "texto": "Computador y celular conectados; contestas la llamada sin desconectar nada."
+   },
+   {
+    "img": "z4",
+    "titulo": "Llamadas claras",
+    "texto": "Captación precisa de voz y reducción de ruido de viento."
+   },
+   {
+    "img": "z5",
+    "titulo": "Sonido a tu gusto",
+    "texto": "Ecualizador en la app Sony | Headphones Connect y 360 Reality Audio."
+   }
+  ]
+ },
+ "comparativa": {
+  "nosotros": "WH-CH720N",
+  "otros": "Genéricos",
+  "titulo": "WH-CH720N vs. audífonos genéricos",
+  "puntos": [
+   "<strong>Cancelación de ruido real</strong> — sensor dual y procesador V1",
+   "<strong>Batería que dura</strong> — hasta 35 h con ANC",
+   "<strong>Multipunto</strong> — 2 dispositivos a la vez",
+   "<strong>Sonido a tu gusto</strong> — app con ecualizador"
+  ],
+  "boton": "Pídelos sin riesgo hoy",
+  "filas": [
+   [
+    "ANC con sensor dual",
+    "ANC sin especificar"
+   ],
+   [
+    "Hasta 35 h de batería",
+    "Batería sin dato confiable"
+   ],
+   [
+    "2 dispositivos a la vez",
+    "Uno a la vez"
+   ],
+   [
+    "App con ecualizador",
+    "Sin app"
+   ],
+   [
+    "Marca Sony",
+    "Marca desconocida"
+   ]
+  ]
+ },
+ "garantia": {
+  "numero": "7",
+  "unidad": "DÍAS",
+  "antetitulo": "Compra sin riesgo",
+  "titulo": "Garantía de 7 días",
+  "texto": "Si llega dañado o con defecto, te devolvemos el dinero o te lo cambiamos. Y pagas solo cuando lo recibes.",
+  "img": "w1"
+ },
+ "videos": {
+  "titulo": "Gente real. <em>Resultados reales.</em>",
+  "texto": "Escúchalo en sus propias palabras.",
+  "boton": "Pídelos sin riesgo hoy",
+  "items": [
+   {
+    "img": "ugc10",
+    "texto": ""
+   },
+   {
+    "img": "ugc02",
+    "texto": "Me los regalaron"
+   },
+   {
+    "img": "ugc04",
+    "texto": "Así suenan"
+   },
+   {
+    "img": "ugc06",
+    "texto": ""
+   },
+   {
+    "img": "ugc08",
+    "texto": "Mi mamá los ama"
+   },
+   {
+    "img": "ugc10",
+    "texto": ""
+   }
+  ]
+ },
+ "oferta_repetida": {
+  "img": "g5",
+  "titulo": "<em>Compártelos.</em> Llévate dos y ahorra.",
+  "texto": "Uno para ti y otro para regalar. El pack x2 trae estuche de viaje de regalo."
+ },
+ "resenas_lista": {
+  "calificacion": "Calificados 4,4/5 en Amazon · 490 opiniones",
+  "titulo": "Lo sintieron. Tú también lo vas a sentir.",
+  "resenas": [
+   {
+    "nota": "5.0",
+    "titulo": "El bus ya no me estresa",
+    "texto": "Dos horas diarias en TransMilenio y ahora llego tranquila. La cancelación de ruido sí se nota.",
+    "etiquetas": [
+     "Transporte",
+     "Cancelación de ruido"
+    ],
+    "demo": true
+   },
+   {
+    "nota": "5.0",
+    "titulo": "La batería es una locura",
+    "texto": "Los cargué el domingo y el viernes todavía tenían batería. Los uso para trabajar y para el gimnasio.",
+    "etiquetas": [
+     "Batería",
+     "Uso diario"
+    ],
+    "demo": true
+   },
+   {
+    "nota": "5.0",
+    "titulo": "Pagué al recibir, sin miedo",
+    "texto": "Me llegaron en 3 días, revisé que todo estuviera bien y pagué. Muy buena experiencia.",
+    "etiquetas": [
+     "Contraentrega",
+     "Envío"
+    ],
+    "demo": true
+   },
+   {
+    "nota": "4.8",
+    "titulo": "Ideal para estudiar",
+    "texto": "Me encierro en mi música y rindo más. Livianos y no me aprietan con gafas.",
+    "etiquetas": [
+     "Estudio",
+     "Comodidad"
+    ],
+    "demo": true
+   }
+  ]
+ },
+ "footer": {
+  "newsletter_titulo": "Únete a la lista MiTienda",
+  "newsletter_texto": "Recibe lanzamientos, ofertas y descuentos exclusivos.",
+  "legal_html": "<p>Sony y WH-CH720N son marcas de Sony Group Corporation. MiTienda es un revendedor independiente.</p><p>* Las reseñas marcadas como demo son de ejemplo y se reemplazan por reseñas reales. Tienda demo del .</p>"
+ }
+}

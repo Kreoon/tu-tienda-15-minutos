@@ -1,0 +1,32 @@
+{% render 'hk-head' %}
+<footer class="hk hk-foot">
+  <div class="hk-wrap">
+    <div class="hk-foot__grid">
+      <div class="hk-foot__logo">{%- capture src -%}{% render 'hk-src', image: section.settings.logo, asset: section.settings.logo_asset, width: 280 %}{%- endcapture -%}{%- if src != blank -%}<img src="{{ src }}" alt="{{ shop.name | escape }}" loading="lazy">{%- else -%}<strong>{{ shop.name }}</strong>{%- endif -%}</div>
+      <div>
+        <h3 style="font-size:18px">{{ section.settings.news_title }}</h3>
+        <p style="opacity:.85">{{ section.settings.news_text }}</p>
+        {%- form 'customer', id: 'hk-news' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <input type="email" name="contact[email]" placeholder="Tu correo" required aria-label="Correo">
+          <button type="submit">Suscribirme</button>
+        {%- endform -%}
+      </div>
+      <div>
+        {%- for link in linklists[section.settings.menu].links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
+        {%- for p in shop.policies -%}<a href="{{ p.url }}">{{ p.title }}</a>{%- endfor -%}
+      </div>
+    </div>
+    <div class="hk-foot__legal">{{ section.settings.legal }}</div>
+    <p class="hk-center" style="margin-top:20px;font-size:12px;opacity:.8">© {{ 'now' | date: '%Y' }} {{ shop.name }} | Todos los derechos reservados</p>
+  </div>
+</footer>
+{% schema %}
+{ "name": "HK · Footer", "settings": [
+  { "type": "image_picker", "id": "logo", "label": "Logo (blanco)" }, { "type": "text", "id": "logo_asset", "label": "Logo (blanco) · archivo del tema" },
+  { "type": "text", "id": "news_title", "label": "Título newsletter", "default": "Únete a la lista" },
+  { "type": "text", "id": "news_text", "label": "Texto newsletter" },
+  { "type": "link_list", "id": "menu", "label": "Menú", "default": "footer" },
+  { "type": "richtext", "id": "legal", "label": "Avisos legales" } ],
+  "presets": [{ "name": "HK · Footer" }] }
+{% endschema %}
