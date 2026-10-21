@@ -21,7 +21,7 @@ Gratis y de código abierto. Un solo prompt lo instala todo: lo copias, lo pegas
 
 ```
 Quiero montar la página de venta de mi producto en Shopify con el kit "Tu tienda online en 15 minutos":
-https://github.com/Kreoon/tu-tienda-15-minutos
+https://github.com/La-Boveda-del-Master/tu-tienda-15-minutos
 
 Hazlo todo tú, paso a paso, y pregúntame solo lo necesario. Háblame en español y en palabras simples.
 
