@@ -1,6 +1,7 @@
 # datos de cada tienda y corrida (no se publican)
-tienda.json
-.tienda/
+tienda*.json
+.tienda*/
+.pull-*/
 corridas/*
 !corridas/.gitkeep
 .build-tema/
@@ -8,3 +9,4 @@ corridas/*
 __pycache__/
 *.pyc
 .claude/settings.local.json
+.boveda/

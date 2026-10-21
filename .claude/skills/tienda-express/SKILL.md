@@ -14,7 +14,8 @@ Si no existe `tienda.json` en la raíz → corre primero la skill **`tienda-prep
 - [ ] Páginas y menús en español sin enlaces rotos (§6). Inicio con `hk-redirect`.
 - [ ] Tema base **"Base tienda express (no tocar)"** (`tienda.json → tema_base_id`) con el kit `hk-*` y locale en español, **neutro**: sin logo, sin anuncio, footer genérico, colores neutros. No se edita durante la corrida: se duplica. La marca (logo, colores, textos) la pone cada corrida.
 - [ ] Panel del navegador con la tienda desbloqueada (contraseña escrita por el usuario) y sesión de admin; Shopify CLI con sesión (`shopify theme list --store <tienda>.myshopify.com`).
-- [ ] Créditos de Magnific ≥ 2.000 (`account_balance`).
+- [ ] Créditos de Magnific ≥ 2.500 (`account_balance`). Si el modo de permisos bloquea a los agentes al usar Magnific, pide al usuario que apruebe esas herramientas y relanza (no las llames tú para saltarte el bloqueo).
+- [ ] Existe `.tienda/base/` (lo necesita `gen_tema.py`). Si falta (otra computadora, carpeta nueva), regénéralo: `shopify theme pull --store <tienda> --theme <tema_base_id> --path .tienda/horizon --only sections/header-group.json --only sections/footer-group.json --only locales/en.default.json --only locales/es.json` y `python -I tools/preparar_base.py`.
 
 ## 1. Arranque (minuto 0)
 Pide en un solo mensaje lo que falte: URL o fotos del producto, URL de referencia, precio/oferta (si no, demo). Luego:
@@ -48,7 +49,8 @@ Mientras corre la ola 2, entrega al usuario la ficha + los ángulos del brief (p
 - Agente sin acceso al navegador → el orquestador corre `tools/qa.js` él mismo.
 
 ## 4. Cierre
-- Publicar el tema (solo con OK del orquestador; el conector no publica temas: admin → Temas → Publicar).
+- Publicar el tema solo con OK explícito del usuario: el conector no publica temas, pero Shopify CLI sí (`CI=1 shopify theme publish --store <tienda> --theme <theme_id> --force`), o el usuario en admin → Temas → Publicar. Si la tienda tiene contraseña, la página no es pública hasta que el usuario la quite (Tienda online → Preferencias).
+- Cambios después de publicar: duplica el tema publicado (`themeDuplicate`), apunta `corrida.json → theme_id` a la copia, re-subida ahí, preview, y publica la copia con OK. Nunca edites el tema en vivo.
 - Pedido de prueba por Releasit y cancelación (`tienda-shopify-setup` §8), solo si el equipo lo pide.
 - Reporta el tiempo por ola desde `corrida.json → hitos`.
 

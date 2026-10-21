@@ -10,6 +10,7 @@ Pide al usuario solo lo que falte, en UN mensaje: dominio `xxxx.myshopify.com`, 
 
 ## 0. Requisitos (verificar, no asumir)
 - Conector **Shopify** de Claude conectado a ESA tienda: `get-shop-info` y confirmar el dominio con el usuario.
+- **¿Tienda de desarrollo?** Consulta `shop { plan { partnerDevelopment } }`. Si es `true`, avisa antes de seguir: sirve para probar, pero **nunca podrá pasar a producción ni vender** (siempre tendrá contraseña); para vender hay que crear una tienda normal con plan de pago y repetir esta preparación allí.
 - **Shopify CLI** con sesión: `shopify version` y `shopify theme list --store <tienda>.myshopify.com` (si pide login, el usuario lo aprueba en el navegador).
 - Python 3 + Pillow: `python -I -c "import PIL"` (si falta: `pip install pillow`).
 - Conectores de **Firecrawl** y **Magnific** disponibles (`ToolSearch "firecrawl"`, `ToolSearch "magnific images_generate"` o `account_balance`).
